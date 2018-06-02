@@ -1,0 +1,19 @@
+{
+    "manifest_version": "1",
+    "api_version": "1",
+    "name": "Decoder",
+    "description": "Decodes a string from multiple formats",
+    "developer_name": "Bruno Paz",
+    "icon": "images/icon.png",
+    "options": {
+        "query_debounce": 0.05
+    },
+    "preferences": [
+        {
+            "id": "decoder_kw",
+            "type": "keyword",
+            "name": "Keyword",
+            "default_value": "decode"
+        }
+    ]
+}
