@@ -12,7 +12,7 @@
         {
             "id": "decoder_kw",
             "type": "keyword",
-            "name": "Keyword",
+            "name": "Decode",
             "default_value": "decode"
         }
     ]
