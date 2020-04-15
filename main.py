@@ -1,7 +1,7 @@
 import logging
 import base64
 import urllib
-import HTMLParser
+import html
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
 from ulauncher.api.shared.event import KeywordQueryEvent, ItemEnterEvent
@@ -24,11 +24,12 @@ class KeywordQueryEventListener(EventListener):
 
     def on_event(self, event, extension):
         items = []
-        parser = HTMLParser.HTMLParser()
+        if event.get_argument() is None:
+            return
 
         try:
-            base64Text = base64.b64decode(event.get_argument())
-        except TypeError:
+            base64Text = base64.b64decode(event.get_argument()).decode("utf-8") 
+        except:
             base64Text = "Cannot decode input text as base64."
 
         try:
@@ -37,7 +38,7 @@ class KeywordQueryEventListener(EventListener):
             urlText = "Cannot decode input text"
 
  
-        htmlText = parser.unescape(event.get_argument())
+        htmlText = html.unescape(event.get_argument())
         items.append(ExtensionResultItem(icon='images/icon.png',
                                          name=base64Text,
                                          description='Base64 Decoded',
